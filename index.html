@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>킹덤틴즈 26과: 하나님 말씀을 날마다 묵상해요 (시편 1편)</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- html2canvas for Capturing Result -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      padding-bottom: env(safe-area-inset-bottom);
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
+    .bible-text {
+      font-family: 'Nanum Myeongjo', serif;
+      line-height: 2.1;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f8fafc;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    /* Input Styling for seamless inline text flow */
+    .qt-input {
+      font-family: 'Pretendard', sans-serif;
+      text-align: center;
+      transition: all 0.2s ease-in-out;
+    }
+    .fade-solution {
+      animation: fadeIn 0.35s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+  <div class="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-sm">
+    <!-- Top Brand Header -->
+    <header class="px-4 py-2.5 border-b border-slate-100 bg-slate-900 text-white">
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="bg-emerald-600 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Kingdom Teens</span>
+          <h1 class="text-xs md:text-sm font-bold text-slate-200">킹덤틴즈 26과 (시편 1편 1-6절)</h1>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <button onclick="openResetModal()" class="bg-slate-800 hover:bg-rose-950 text-rose-300 text-[11px] px-2.5 py-1 rounded flex items-center gap-1 transition-all" title="진도 초기화">
+            <i class="fa-solid fa-rotate-left"></i> <span class="hidden sm:inline">처음부터 풀기</span>
+          </button>
+          <button onclick="shareAppUrl()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-2.5 py-1 rounded flex items-center gap-1 transition-all">
+            <i class="fa-solid fa-share-nodes"></i> <span class="hidden sm:inline">초대 링크 복사</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Weekly Study Day Navigation (Monday to Friday, 0단계 제외) -->
+    <nav class="bg-white px-3 py-2.5 shadow-sm">
+      <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 overflow-x-auto">
+        <div class="flex items-center gap-1.5 shrink-0">
+          <span class="text-xs font-bold text-slate-400 mr-1.5"><i class="fa-solid fa-calendar-day"></i> 주간 묵상:</span>
+          <button id="day-tab-mon" onclick="switchDay('mon')" class="px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-emerald-600 text-white transition-all shadow-sm shrink-0">
+            월(1단계)
+          </button>
+          <button id="day-tab-tue" onclick="switchDay('tue')" class="px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shrink-0">
+            화(2단계)
+          </button>
+          <button id="day-tab-wed" onclick="switchDay('wed')" class="px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shrink-0">
+            수(3단계)
+          </button>
+          <button id="day-tab-thu" onclick="switchDay('thu')" class="px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shrink-0">
+            목(4단계)
+          </button>
+          <button id="day-tab-fri" onclick="switchDay('fri')" class="px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shrink-0">
+            금(5단계)
+          </button>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0 font-semibold">
+          <div class="bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] font-bold px-2.5 py-1 rounded-lg">
+            <span id="day-badge-name">월요일 진행 중</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile View Switcher (Reading vs Activity) -->
+    <div class="lg:hidden p-3 bg-slate-50/90 backdrop-blur-sm border-t border-slate-100">
+      <div class="max-w-md mx-auto bg-white p-1 rounded-xl shadow-inner border border-slate-200/60 flex">
+        <button id="tab-btn-reading" onclick="switchMobileTab('reading')" class="flex-1 py-2 text-xs md:text-sm font-bold rounded-lg text-emerald-800 bg-emerald-50 transition-all flex items-center justify-center gap-1.5">
+          📖 <span id="reading-tab-label">성경 말씀 읽기</span>
+        </button>
+        <button id="tab-btn-activity" onclick="switchMobileTab('activity')" class="flex-1 py-2 text-xs md:text-sm font-bold rounded-lg text-slate-500 hover:text-slate-800 transition-all flex items-center justify-center gap-1.5">
+          ✏️ <span id="activity-tab-label">문제 풀기</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+    
+    <!-- LEFT PANEL: Bible Verses & Reading Column -->
+    <section id="pane-reading" class="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-5 md:p-7 flex flex-col shadow-sm max-h-[calc(100vh-160px)] overflow-y-auto block">
+      
+      <!-- Panel Header Info -->
+      <div class="border-b border-slate-100 pb-3 mb-3">
+        <div class="flex items-center justify-between mb-2">
+          <h2 id="left-panel-title" class="text-base md:text-lg font-extrabold text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-tree text-emerald-600"></i> 성경 말씀 읽기
+          </h2>
+          <span id="left-panel-meta" class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-0.5 rounded-full font-bold whitespace-nowrap">시편 1:1-6</span>
+        </div>
+
+        <!-- Bible Filter Buttons -->
+        <div id="bible-chapter-nav" class="flex items-center gap-1 overflow-x-auto pb-1 pt-1 scrollbar-none">
+          <span class="text-[11px] font-bold text-slate-400 shrink-0 mr-1">구절 선택:</span>
+          <button id="filter-btn-all" onclick="filterBibleSection('all')" class="px-2.5 py-0.5 text-xs font-bold rounded-lg bg-emerald-600 text-white shadow-sm shrink-0 transition">전체 (1-6절)</button>
+          <button id="filter-btn-1to3" onclick="filterBibleSection('1to3')" class="px-2.5 py-0.5 text-xs font-medium rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 shrink-0 transition">1-3절 (의인의 길)</button>
+          <button id="filter-btn-4to6" onclick="filterBibleSection('4to6')" class="px-2.5 py-0.5 text-xs font-medium rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 shrink-0 transition">4-6절 (악인의 길)</button>
+        </div>
+      </div>
+      
+      <!-- BIBLE TEXT CONTAINER (Active for Monday, Tuesday, Thursday) -->
+      <div id="left-content-bible" class="bible-text text-slate-700 space-y-4 text-[14px] md:text-[15px] text-justify font-medium">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+
+      <!-- KINGDOM READING CONTAINER (Active for Wednesday) -->
+      <div id="left-content-reading" class="hidden text-slate-700 space-y-6 bible-text font-medium text-justify">
+        <!-- Loaded dynamically via JavaScript -->
+      </div>
+
+      <!-- QUIZ GUIDE INTRO CONTAINER (Active for Friday) -->
+      <div id="left-content-quizintro" class="hidden text-slate-700 space-y-5">
+        <!-- Loaded dynamically via JavaScript -->
+      </div>
+
+    </section>
+
+    <!-- RIGHT PANEL: Activity / Questions Panel -->
+    <section id="pane-activity" class="lg:col-span-7 flex flex-col gap-6 hidden lg:flex">
+      
+      <div id="right-activity-container" class="space-y-6">
+
+        <!-- ==================== 월요일 (1단계) 콘텐츠 ==================== -->
+        <div id="quiz-day-mon" class="space-y-6">
+          <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white rounded-2xl p-4 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold uppercase">STEP 01</span>
+              <h3 class="text-base font-extrabold mt-1">1단계(월) - 관찰 해석 1: 말씀을 즐거워하는 복 있는 사람</h3>
+              <p class="text-[11px] text-white/90 mt-0.5">목표: 세상의 유혹을 멀리하고 주야로 묵상하는 의인의 참된 생명력을 배웁니다. (시 1:1-3)</p>
+            </div>
+            <span class="text-3xl opacity-30"><i class="fa-solid fa-seedling"></i></span>
+          </div>
+
+          <!-- Q1 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="mon-card-1">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  시편 1편은 ‘복 있는 사람(행복한 사람)’이 절대 하지 말아야 할 세 가지 행동을 경고합니다. 복 있는 사람은 누구의 꾀를 따르지 않으며, 누구의 길에 서지 않으며, 누구의 자리에 앉지 않나요? <span class="text-emerald-700 font-semibold text-xs whitespace-nowrap">(시 1:1)</span>
+                </p>
+                <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify space-y-1.5">
+                  <div>
+                    <span>답: </span>
+                    <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                      <span class="text-slate-400 font-bold">(</span>
+                      <input type="text" id="ans-mon-1-1" placeholder="ㅇㅇㄷ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-emerald-600 focus:outline-none font-bold text-emerald-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(1)">
+                      <span class="text-slate-400 font-bold">)</span>
+                    </span>
+                    <span>의 꾀, </span>
+                    <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                      <span class="text-slate-400 font-bold">(</span>
+                      <input type="text" id="ans-mon-1-2" placeholder="ㅈㅇㄷ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-emerald-600 focus:outline-none font-bold text-emerald-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(1)">
+                      <span class="text-slate-400 font-bold">)</span>
+                    </span>
+                    <span>의 길, </span>
+                    <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                      <span class="text-slate-400 font-bold">(</span>
+                      <input type="text" id="ans-mon-1-3" placeholder="ㅇㅁㅎ ㅈㄷ" class="qt-input w-28 text-center border-b-2 border-slate-300 bg-transparent focus:border-emerald-600 focus:outline-none font-bold text-emerald-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(1)">
+                      <span class="text-slate-400 font-bold">)</span>
+                    </span>
+                    <span>의 자리</span>
+                  </div>
+                  
+                  <div id="badge-mon-1" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+                <div id="explain-mon-1" class="hidden fade-solution bg-emerald-50/70 border border-emerald-100 rounded-xl p-4 mt-2">
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>설명:</strong> 악에 빠지는 과정은 한순간에 일어나지 않습니다. 처음에는 호기심에 악한 생각을 슬쩍 ‘따라가다가(걷다가)’, 어느새 그 나쁜 습관에 익숙해져 그 길에 멈춰 ‘서게’ 되고, 결국에는 하나님을 비웃는 교만한 자리에 푹 ‘앉아버리게’ 됩니다. 복 있는 사람은 이 무서운 죄의 전염성을 알기에 처음부터 그 악한 삶의 방식을 철저히 거절합니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="mon-card-2">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  세상의 악한 길을 피한 복 있는 사람이 오직 ‘즐거워하며’ 밤낮으로(주야로) 묵상하는 것은 무엇인가요? <span class="text-emerald-700 font-semibold text-xs whitespace-nowrap">(시 1:2)</span>
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 여호와의 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-mon-2" placeholder="ㅇㅂ / ㅁㅆ" class="qt-input w-28 text-center border-b-2 border-slate-300 bg-transparent focus:border-emerald-600 focus:outline-none font-bold text-emerald-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(2)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  
+                  <div id="badge-mon-2" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+                <div id="explain-mon-2" class="hidden fade-solution bg-emerald-50/70 border border-emerald-100 rounded-xl p-4 mt-2">
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>설명:</strong> ‘묵상한다’는 것은 눈으로 대충 읽는 것이 아니라, 소가 여물을 되새김질하듯 말씀을 소리내어 읽고, 곱씹으며 내 삶에 깊이 적용하는 것을 뜻합니다. 복 있는 사람은 억지로 벌받을까 봐 숙제하듯 읽는 사람이 아니라, 나를 사랑하시는 하나님의 말씀을 진심으로 ‘즐거워하며’ 매일 그 말씀의 길에 기쁨으로 순종하는 사람입니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="mon-card-3">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  하나님의 말씀을 주야로 묵상하는 사람은 어디에 심은 나무와 같다고 비유되나요? <span class="text-emerald-700 font-semibold text-xs whitespace-nowrap">(시 1:3)</span>
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-mon-3" placeholder="ㅅㄴㄱ" class="qt-input w-24 text-center border-b-2 border-slate-300 bg-transparent focus:border-emerald-600 focus:outline-none font-bold text-emerald-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(3)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  <span>에 심은 나무</span>
+                  
+                  <div id="badge-mon-3" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+                <div id="explain-mon-3" class="hidden fade-solution bg-emerald-50/70 border border-emerald-100 rounded-xl p-4 mt-2">
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>설명:</strong> 팔레스타인 지역은 건기가 길어 비가 오지 않으면 식물이 말라 죽기 쉽습니다. 하지만 물이 마르지 않는 시냇가에 뿌리를 깊이 내린 나무는, 가뭄이나 뜨거운 태양 앞에서도 수분을 끊임없이 공급받아 절대 시들지 않습니다. 생명의 근원이신 하나님과 말씀에 깊이 연결된 강력한 생명력을 뜻합니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="mon-card-4">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">4</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  시냇가에 심은 나무는 철을 따라 열매를 맺으며 그 잎사귀가 마르지 아니함 같으니, 그가 하는 모든 일이 결국 어떻게 되나요? <span class="text-emerald-700 font-semibold text-xs whitespace-nowrap">(시 1:3)</span>
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 다 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-mon-4" placeholder="ㅎㅌ" class="qt-input w-24 text-center border-b-2 border-slate-300 bg-transparent focus:border-emerald-600 focus:outline-none font-bold text-emerald-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(4)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  <span>하리로다</span>
+                  
+                  <div id="badge-mon-4" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2.5 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+                <div id="explain-mon-4" class="hidden fade-solution bg-emerald-50/70 border border-emerald-100 rounded-xl p-4 mt-2">
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>설명:</strong> ‘형통’은 아무런 고난이나 어려움이 없다는 세상적인 성공(돈, 명예)을 뜻하는 것이 아닙니다. 때로는 거센 비바람을 맞을지라도, 결국 하나님의 선하신 뜻 안에서 풍성한 생명의 열매를 맺으며 끝까지 안전하게 보호받는 진정한 승리를 의미합니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="mon-card-5">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">5</span>
+              <div class="space-y-3 w-full">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  [생각 나누기] 내가 평소에 하나님의 ‘말씀’보다 더 즐거워하며 밤낮으로 가까이하는 것(유튜브, 게임, 아이돌 직캠, 친구의 SNS 등)은 무엇인지 생각해 보고, 그것의 비중을 줄이고 말씀을 가까이하기 위한 나만의 실천 방법을 구체적으로 적어보세요.
+                </p>
+                <div class="bg-emerald-50/70 border border-emerald-100 rounded-xl p-3 text-xs text-slate-700 leading-relaxed">
+                  <p>💡 세상의 재미는 결국 바람에 나는 겨처럼 허무하게 날아가지만, 말씀을 가까이하는 자는 시냇가에 심은 나무처럼 시들지 않는 생명력을 얻습니다.</p>
+                </div>
+                <textarea id="ans-mon-5" rows="3" placeholder="예: 자기 전 스마트폰으로 쇼츠나 게임을 1시간 넘게 보곤 했는데, 앞으로는 잠들기 전 15분 동안 폰을 내려놓고 시편 말씀을 낭독하고 기도하겠습니다... (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-base" oninput="checkMonAnswer(5)"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 화요일 (2단계) 콘텐츠 ==================== -->
+        <div id="quiz-day-tue" class="space-y-6 hidden">
+          <div class="bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-2xl p-4 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold uppercase">STEP 02</span>
+              <h3 class="text-base font-extrabold mt-1">2단계(화) - 관찰 해석 2: 바람에 나는 겨 vs 인정받는 의인</h3>
+              <p class="text-[11px] text-white/90 mt-0.5">목표: 악인의 허무한 결말을 확인하고, 의인의 길을 지키시는 하나님의 주권을 신뢰합니다. (시 1:4-6)</p>
+            </div>
+            <span class="text-3xl opacity-30"><i class="fa-solid fa-wind"></i></span>
+          </div>
+
+          <!-- Q1 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="tue-card-1">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  하나님의 말씀대로 살지 않는 악인들은 무성한 나무와 달리 오직 바람에 나는 무엇과 같다고 비유되나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(시 1:4)</span>
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 바람에 나는 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-tue-1" placeholder="ㄱ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-600 focus:outline-none font-bold text-amber-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(1)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  
+                  <div id="badge-tue-1" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+                <div id="explain-tue-1" class="hidden fade-solution bg-amber-50/70 border border-amber-100 rounded-xl p-4 mt-2">
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>설명:</strong> ‘겨’는 곡식의 껍질입니다. 타작마당에 모아둘 때는 알곡과 섞여 무거워 보이고 부피도 커 보이지만, 바람이 한 번 훅 불면 흔적도 없이 날아가 버리는 텅 빈 껍질에 불과합니다. 당장 이 땅에서는 악인들이 화려하고 성공한 것처럼 보일지 몰라도, 그들의 인생은 생명력이 전혀 없는 허무하고 가벼운 껍질일 뿐입니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="tue-card-2">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  생명력이 없는 악인들은 결국 무엇을 견디지 못하며, 누구의 모임에 들지 못하나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(시 1:5)</span>
+                </p>
+                <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify space-y-1.5">
+                  <div>
+                    <span>답: </span>
+                    <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                      <span class="text-slate-400 font-bold">(</span>
+                      <input type="text" id="ans-tue-2-1" placeholder="ㅅㅍ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-600 focus:outline-none font-bold text-amber-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(2)">
+                      <span class="text-slate-400 font-bold">)</span>
+                    </span>
+                    <span>을 견디지 못하며, </span>
+                    <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                      <span class="text-slate-400 font-bold">(</span>
+                      <input type="text" id="ans-tue-2-2" placeholder="ㅇㅇㄷ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-600 focus:outline-none font-bold text-amber-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(2)">
+                      <span class="text-slate-400 font-bold">)</span>
+                    </span>
+                    <span>의 모임에 들지 못해요.</span>
+                  </div>
+                  
+                  <div id="badge-tue-2" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+                <div id="explain-tue-2" class="hidden fade-solution bg-amber-50/70 border border-amber-100 rounded-xl p-4 mt-2">
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>설명:</strong> 악인들은 공의로우신 하나님의 엄위하신 심판대 앞을 결코 통과할 수 없습니다. ‘의인들의 모임’은 구원받은 하나님 나라 백성들의 영원한 예배 공동체를 뜻합니다. 악인들은 그 영광스러운 하나님 나라로부터 영원히 추방당하고 맙니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="tue-card-3">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  무릇 하나님의 말씀대로 살아가는 ‘의인들의 길’은 여호와께서 어떻게 하시나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(시 1:6)</span>
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 여호와께서 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-tue-3" placeholder="ㅇㅈ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-600 focus:outline-none font-bold text-amber-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(3)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  <span>하시나</span>
+                  
+                  <div id="badge-tue-3" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2.5 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+                <div id="explain-tue-3" class="hidden fade-solution bg-amber-50/70 border border-amber-100 rounded-xl p-4 mt-2">
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>설명:</strong> ‘인정하신다’는 말은 단순히 “너 착하다”라고 고개만 끄덕이시는 것이 아닙니다. 온 우주의 왕이신 하나님께서 우리 삶 전체를 완벽하게 아시고, 책임지시며, 어떤 위기 속에서도 눈동자처럼 끝까지 보호하고 지켜주신다는 강력한 구원의 약속입니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="tue-card-4">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">4</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  여호와께서 인정하시는 의인의 길과 정반대로, 하나님을 거역하고 자기 마음대로 살았던 악인들의 길의 최종 결론은 어떻게 되나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(시 1:6)</span>
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-tue-4" placeholder="ㅁㅎㄹㄹㄷ" class="qt-input w-28 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-500 focus:outline-none font-bold text-amber-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(4)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  
+                  <div id="badge-tue-4" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+                <div id="explain-tue-4" class="hidden fade-solution bg-amber-50/70 border border-amber-100 rounded-xl p-4 mt-2">
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>설명:</strong> 시편 1편의 최종 결론입니다. 이 세상에서는 악인들의 넓은 길이 형통해 보이고 의인들의 좁은 길이 실패하는 것처럼 보일 때가 많습니다. 하지만 통치자이신 하나님께서 결국 모든 것을 의롭게 심판하시기에, 악인의 길은 반드시 영원한 파멸과 멸망으로 끝이 납니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="tue-card-5">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">5</span>
+              <div class="space-y-3 w-full">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  [생각 나누기] 세상에서는 나쁜 짓(컨닝, 거짓말, 친구 따돌림 등)을 하면서 자기 이익을 챙기는 사람들이 더 편하고 잘나가는 것처럼 보여 억울할 때가 있습니다. 하지만 악인의 결말이 결국 ‘바람에 나는 겨’처럼 망한다는 사실을 기억할 때, 나는 불법의 유혹 앞에서 어떤 마음을 가져야 할지 다짐을 적어보세요.
+                </p>
+                <div class="bg-amber-50/70 border border-amber-100 rounded-xl p-3 text-xs text-slate-700 leading-relaxed">
+                  <p>💡 눈앞의 작은 이익이나 편안함 때문에 세상의 불법과 타협하지 않고, 정직의 길을 택하여 걷는 것이 하나님이 인정하시고 책임지시는 생명의 길입니다.</p>
+                </div>
+                <textarea id="ans-tue-5" rows="3" placeholder="예: 시험 볼 때 친구들이 컨닝하거나 편법을 써도 부러워하지 않고, 정직하게 최선을 다하며 하나님이 지켜보시고 인정하시는 좁은 길을 걷겠습니다... (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 text-base" oninput="checkTueAnswer(5)"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 수요일 (3단계) 콘텐츠 ==================== -->
+        <div id="quiz-day-wed" class="space-y-6 hidden">
+          <div class="bg-gradient-to-r from-emerald-600 to-indigo-700 text-white rounded-2xl p-4 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold uppercase">STEP 03</span>
+              <h3 class="text-base font-extrabold mt-1">3단계(수) - 킹덤 묵상 리딩</h3>
+              <p class="text-[11px] text-white/90 mt-0.5">목표: 흔들리지 않는 영원한 생명나무 되신 예수님을 묵상하고 나의 고백을 기록합니다.</p>
+            </div>
+            <span class="text-3xl opacity-30"><i class="fa-solid fa-feather-pointed"></i></span>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">💭</span>
+              <div class="space-y-4 w-full">
+                <h4 class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">시냇가에 뿌리내린 생명나무 킹덤틴즈의 결단</h4>
+                <p class="text-xs text-slate-500 leading-relaxed text-justify">수요일의 킹덤 리딩(왼쪽 칼럼 본문)을 정독하고, 바람에 날아가는 껍데기 인생을 부러워하지 않고 완전한 의인이신 예수님과 말씀의 시냇가에 깊이 뿌리를 내리겠다는 나의 다짐을 적어보세요.</p>
+                
+                <div class="space-y-1.5">
+                  <label for="ans-wed-reflex" class="text-xs font-bold text-slate-500 block">나의 다짐과 고백</label>
+                  <textarea id="ans-wed-reflex" rows="6" placeholder="세상의 화려해 보이는 악한 길을 부러워하지 않고, 저를 살리시는 하나님의 말씀에 깊이 뿌리를 내리겠습니다. 흔들릴 때마다 저를 위해 완전한 의를 이루신 예수님을 바라보며 시냇가에 심은 나무처럼 튼튼한 백성이 되겠습니다! (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-base" oninput="checkWedAnswer()"></textarea>
+                </div>
+
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl text-xs text-emerald-950 flex gap-2">
+                  <i class="fa-solid fa-circle-info text-emerald-600 shrink-0 mt-0.5"></i>
+                  <span>수요일 묵상 고백을 채워주시면 다음 목요일 단계를 진행할 수 있는 리포트 카드가 활성화됩니다.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 목요일 (4단계) 콘텐츠 ==================== -->
+        <div id="quiz-day-thu" class="space-y-6 hidden">
+          <div class="bg-gradient-to-r from-teal-700 to-emerald-800 text-white rounded-2xl p-4 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold uppercase">STEP 04</span>
+              <h3 class="text-base font-extrabold mt-1">4단계(목) - 하나님 나라 관점</h3>
+              <p class="text-[11px] text-white/90 mt-0.5">목표: 핵심 단어 ‘말씀(묵상)’과 웨스트민스터 소교리문답 40문을 탐구합니다.</p>
+            </div>
+            <span class="text-3xl opacity-30"><i class="fa-solid fa-compass"></i></span>
+          </div>
+
+          <div class="bg-emerald-50 border border-emerald-100 p-4 rounded-xl flex items-center gap-3">
+            <span class="text-xl shrink-0">📖</span>
+            <p class="text-xs text-emerald-950 font-bold leading-relaxed">26과 핵심 단어: <span class="bg-emerald-200 px-2 py-0.5 rounded font-black text-emerald-900">‘말씀(묵상)’</span></p>
+          </div>
+
+          <!-- Q1 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm transition-all" id="thu-card-1">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm font-bold text-slate-900 leading-relaxed">
+                  하나님 나라 백성에게 ‘진짜 행복’은 환경의 편안함이나 세상의 성공이 아니라 무엇을 의미하나요? <span class="text-emerald-700 font-semibold text-xs whitespace-nowrap">(시 1:2)</span>
+                </p>
+                <div class="bg-emerald-50/80 border border-emerald-100 rounded-xl p-3.5 text-xs text-slate-700 leading-relaxed">
+                  <p>💡 말씀 길잡이: 성경이 말하는 행복은 소유가 아니라 생명의 근원이신 하나님과 말씀으로 깊이 연결된 상태를 말합니다. 좋은 일이 있어서 기쁜 것이 아니라 말씀 안에 거할 때 참된 평안을 누립니다.</p>
+                </div>
+                <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify space-y-1">
+                  <div>
+                    <span>답: 여호와의 </span>
+                    <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                      <span class="text-slate-400 font-bold">(</span>
+                      <input type="text" id="ans-thu-1-1" placeholder="ㅁㅆ / ㅇㅂ" class="qt-input w-24 text-center border-b-2 border-slate-300 bg-transparent focus:border-emerald-600 focus:outline-none font-bold text-emerald-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(1)">
+                      <span class="text-slate-400 font-bold">)</span>
+                    </span>
+                    <span>을 즐거워하고 주야로 </span>
+                    <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                      <span class="text-slate-400 font-bold">(</span>
+                      <input type="text" id="ans-thu-1-2" placeholder="ㅁㅅ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-emerald-600 focus:outline-none font-bold text-emerald-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(1)">
+                      <span class="text-slate-400 font-bold">)</span>
+                    </span>
+                    <span>하는 것입니다.</span>
+                  </div>
+                  
+                  <div id="badge-thu-1" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm transition-all" id="thu-card-2">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm font-bold text-slate-900 leading-relaxed">
+                  시편 1편에서 의인과 악인(행복한 사람과 불행한 사람)을 구분하는 가장 결정적인 기준(법칙)은 무엇인가요?
+                </p>
+                <div class="bg-emerald-50/80 border border-emerald-100 rounded-xl p-3.5 text-xs text-slate-700 leading-relaxed">
+                  <p>💡 말씀 길잡이: 세상의 기준인 학력이나 재산, 외모가 아닙니다. 하나님의 다스림의 기준인 말씀을 삶의 중심에 두고 순종하느냐, 아니면 자기 생각대로 사느냐가 유일한 평가 기준입니다.</p>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 하나님의 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-thu-2" placeholder="ㅁㅆ / ㅇㅂ" class="qt-input w-28 text-center border-b-2 border-slate-300 bg-transparent focus:border-emerald-600 focus:outline-none font-bold text-emerald-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(2)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  <span>에 대한 태도입니다.</span>
+                  
+                  <div id="badge-thu-2" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm transition-all" id="thu-card-3">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm font-bold text-slate-900 leading-relaxed">
+                  의인들의 길을 하나님께서 ‘인정하신다’는 것은 무슨 뜻인가요? <span class="text-emerald-700 font-semibold text-xs whitespace-nowrap">(시 1:6)</span>
+                </p>
+                <div class="bg-emerald-50/80 border border-emerald-100 rounded-xl p-3.5 text-xs text-slate-700 leading-relaxed">
+                  <p>💡 말씀 길잡이: 인정하다는 말은 깊이 알고 친밀하다는 뜻입니다. 창조주 하나님께서 의인들의 삶의 모든 수고를 완벽하게 아시고, 끝까지 돌보시며 책임지신다는 뜻입니다.</p>
+                </div>
+                <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify space-y-1">
+                  <div>
+                    <span>답: 왕이신 하나님께서 의인들의 삶을 깊이 </span>
+                    <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                      <span class="text-slate-400 font-bold">(</span>
+                      <input type="text" id="ans-thu-3-1" placeholder="ㅇㅅㄱ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-emerald-600 focus:outline-none font-bold text-emerald-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(3)">
+                      <span class="text-slate-400 font-bold">)</span>
+                    </span>
+                    <span>, 지키시며 끝까지 </span>
+                    <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                      <span class="text-slate-400 font-bold">(</span>
+                      <input type="text" id="ans-thu-3-2" placeholder="ㄷㅂㅅㄷ" class="qt-input w-24 text-center border-b-2 border-slate-300 bg-transparent focus:border-emerald-600 focus:outline-none font-bold text-emerald-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(3)">
+                      <span class="text-slate-400 font-bold">)</span>
+                    </span>
+                    <span>는 뜻입니다.</span>
+                  </div>
+                  
+                  <div id="badge-thu-3" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm transition-all" id="thu-card-4">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">4</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm font-bold text-slate-900 leading-relaxed">
+                  이 땅에서 악인들의 꾀나 죄인들의 길을 완벽하게 피하고, 오직 하나님의 말씀에 온전히 순종하셔서 우리에게 생명의 길을 열어주신 진짜 ‘복 있는 사람’은 누구신가요?
+                </p>
+                <div class="bg-emerald-50/80 border border-emerald-100 rounded-xl p-3.5 text-xs text-slate-700 leading-relaxed">
+                  <p>💡 말씀 길잡이: 우리는 매일 넘어지지만, 완전한 의인이신 예수님이 우리를 대표하여 십자가 죽음까지 완벽하게 순종하셨습니다. 예수님의 의로움 덕분에 우리는 영원한 하나님 나라에 들어갑니다.</p>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-thu-4" placeholder="ㅇㅅ ㄱㄹㅅㄷ" class="qt-input w-32 text-center border-b-2 border-slate-300 bg-transparent focus:border-emerald-600 focus:outline-none font-bold text-emerald-950 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(4)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  
+                  <div id="badge-thu-4" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm transition-all" id="thu-card-5">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">5</span>
+              <div class="space-y-3 w-full">
+                <p class="text-sm font-bold text-slate-900 leading-relaxed">
+                  웨스트민스터 소교리문답 40문을 읽고, 하나님께서 순종의 법칙으로 주신 말씀(도덕법)이 내 삶에 어떤 참된 행복과 안전한 보호를 가져다주는지 나의 언어로 적어보세요.
+                </p>
+                <div class="bg-emerald-50/80 border border-emerald-100 rounded-xl p-3.5 text-xs text-slate-700 leading-relaxed">
+                  <p>💡 교리문답은 말씀(도덕법)이 우리를 옭아매는 족쇄가 아니라, 인간이 본래 지음받은 대로 가장 행복하게 살아갈 수 있도록 주신 하나님의 ‘안전 가이드라인’임을 가르쳐 줍니다.</p>
+                </div>
+                <textarea id="ans-thu-5" rows="3" placeholder="예: 당장 내 맘대로 놀고 게임하면 편하지만 결국 후회만 남습니다. 반면에 말씀에 순종하면 흔들리는 세상 속에서 제가 안전하게 보호받고 시냇가에 심은 나무처럼 진짜 평안과 행복을 누릴 수 있습니다... (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-base" oninput="checkThuAnswer(5)"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 금요일 (5단계) 콘텐츠 ==================== -->
+        <div id="quiz-day-fri" class="space-y-6 hidden">
+          <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white rounded-2xl p-4 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold uppercase">STEP 05</span>
+              <h3 class="text-base font-extrabold mt-1">5단계(금) - 킹덤 최종 퀴즈</h3>
+              <p class="text-[11px] text-white/90 mt-0.5">목표: 시편 1편의 핵심 진리(의인의 형통, 악인의 허무함, 말씀 묵상의 복)를 최종 점검합니다.</p>
+            </div>
+            <span class="text-3xl opacity-30"><i class="fa-solid fa-trophy"></i></span>
+          </div>
+
+          <!-- Q1 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="fri-card-1">
+            <span class="text-xs font-bold text-slate-400">질문 1</span>
+            <h4 class="text-sm md:text-base font-medium text-slate-950 mt-1">시편 1편이 말하는 ‘복 있는 사람’은 재산이 많고 건강하며 세상에서 가장 성공하여 높은 자리에 앉은 사람을 뜻한다. (O, X)</h4>
+            
+            <div class="grid grid-cols-2 gap-3 mt-4">
+              <button onclick="selectFriQuiz(1, 1)" id="fri-btn-1-1" class="border-2 border-slate-200 rounded-2xl p-4 text-slate-700 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex flex-col items-center gap-2">
+                <span class="text-2xl text-blue-600">O</span>
+                <span class="text-xs">그렇다</span>
+              </button>
+              <button onclick="selectFriQuiz(1, 2)" id="fri-btn-1-2" class="border-2 border-slate-200 rounded-2xl p-4 text-slate-700 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex flex-col items-center gap-2">
+                <span class="text-2xl text-red-600">X</span>
+                <span class="text-xs">아니다</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="fri-card-2">
+            <span class="text-xs font-bold text-slate-400">질문 2</span>
+            <h4 class="text-sm md:text-base font-medium text-slate-950 mt-1">시편 1편 2절은 복 있는 사람이 하나님의 말씀을 ‘주야로 묵상’한다고 말합니다. 이때 복 있는 사람이 말씀을 가까이하는 가장 올바른 마음가짐(동기)은 무엇일까요?</h4>
+            
+            <div class="grid grid-cols-1 gap-3 mt-4">
+              <button onclick="selectFriQuiz(2, 1)" id="fri-btn-2-1" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0 font-bold">①</div>
+                <p class="text-xs text-slate-700">율법을 많이 알아서 사람들에게 똑똑함을 자랑하기 위해</p>
+              </button>
+              <button onclick="selectFriQuiz(2, 2)" id="fri-btn-2-2" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0 font-bold">②</div>
+                <p class="text-xs text-slate-700">큐티(말씀 묵상)를 빼먹으면 하나님께 벌을 받을까 봐 무서워서</p>
+              </button>
+              <button onclick="selectFriQuiz(2, 3)" id="fri-btn-2-3" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0 font-bold">③</div>
+                <p class="text-xs text-slate-700">나를 사랑하시는 하나님의 말씀을 진심으로 즐거워하고 기뻐하기 때문에</p>
+              </button>
+              <button onclick="selectFriQuiz(2, 4)" id="fri-btn-2-4" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0 font-bold">④</div>
+                <p class="text-xs text-slate-700">성경을 많이 읽으면 세상에서 부자가 되고 성공할 수 있기 때문에</p>
+              </button>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="fri-card-3">
+            <span class="text-xs font-bold text-slate-400">질문 3</span>
+            <h4 class="text-sm md:text-base font-medium text-slate-950 mt-1">시편 1편 3절은 시냇가에 심은 나무처럼 말씀에 뿌리내린 사람이 “하는 모든 일이 다 형통하리로다”라고 말씀합니다. 여기서 성경이 말하는 ‘형통’의 진짜 의미는 무엇일까요?</h4>
+            
+            <div class="grid grid-cols-1 gap-3 mt-4">
+              <button onclick="selectFriQuiz(3, 1)" id="fri-btn-3-1" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0 font-bold">①</div>
+                <p class="text-xs text-slate-700">아무런 고난이나 실패 없이, 내가 원하는 소원이 마법처럼 다 이루어지는 것</p>
+              </button>
+              <button onclick="selectFriQuiz(3, 2)" id="fri-btn-3-2" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0 font-bold">②</div>
+                <p class="text-xs text-slate-700">세상에서 가장 돈을 많이 벌고 높은 자리에 올라가 평생 편안하게 사는 것</p>
+              </button>
+              <button onclick="selectFriQuiz(3, 3)" id="fri-btn-3-3" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0 font-bold">③</div>
+                <p class="text-xs text-slate-700">때로는 거센 비바람(고난)을 맞을지라도, 하나님의 선하신 뜻 안에서 생명의 열매를 맺으며 끝까지 보호받는 것</p>
+              </button>
+              <button onclick="selectFriQuiz(3, 4)" id="fri-btn-3-4" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0 font-bold">④</div>
+                <p class="text-xs text-slate-700">말씀을 묵상하기만 하면 공부를 안 해도 기적처럼 시험에서 매번 100점을 받는 것</p>
+              </button>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="fri-card-4">
+            <span class="text-xs font-bold text-slate-400">질문 4</span>
+            <h4 class="text-sm md:text-base font-medium text-slate-950 mt-1">겉보기에는 화려하고 무거워 보이지만, 생명력이 없어서 결국 하나님의 심판 때에 쉽게 날아가 버리는 악인들의 모습을 성경은 무엇에 비유했나요?</h4>
+            
+            <div class="grid grid-cols-1 gap-3 mt-4">
+              <button onclick="selectFriQuiz(4, 1)" id="fri-btn-4-1" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0 font-bold">①</div>
+                <p class="text-xs text-slate-700">시든 꽃</p>
+              </button>
+              <button onclick="selectFriQuiz(4, 2)" id="fri-btn-4-2" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0 font-bold">②</div>
+                <p class="text-xs text-slate-700">썩은 과일</p>
+              </button>
+              <button onclick="selectFriQuiz(4, 3)" id="fri-btn-4-3" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0 font-bold">③</div>
+                <p class="text-xs text-slate-700">모래성</p>
+              </button>
+              <button onclick="selectFriQuiz(4, 4)" id="fri-btn-4-4" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0 font-bold">④</div>
+                <p class="text-xs text-slate-700">바람에 나는 겨</p>
+              </button>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="fri-card-5">
+            <span class="text-xs font-bold text-slate-400">질문 5 (상황형 마음 조언)</span>
+            <div class="bg-emerald-50 border border-emerald-150 p-4 rounded-xl mt-1.5 space-y-2">
+              <p class="text-xs text-emerald-950 font-medium leading-relaxed">
+                💬 <strong>수아의 고민:</strong><br>
+                “주말만 되면 늦잠 자고 싶고, 성경 읽기보다 유튜브 보는 게 훨씬 재밌어. 친구들도 다 그렇게 노는데 나만 굳이 말씀 읽어야 할까? 당장 눈에 보이는 재미가 진짜 행복 아닐까 고민돼.”
+              </p>
+            </div>
+
+            <p class="text-xs text-slate-500 mt-3 font-semibold">친구의 유혹이나 세상의 달콤함 앞에서 흔들리는 수아에게 시편 1편의 ‘시냇가에 심은 나무’를 기억하는 킹덤틴즈로서 어떤 따뜻하고 성경적인 조언을 전해줄 수 있을지 적어보세요.</p>
+
+            <div class="space-y-2 mt-3">
+              <textarea id="ans-fri-5" rows="4" placeholder="예: 수아야, 당장은 게임하고 유튜브 보는 게 재밌어 보이지만 그건 바람에 날아가는 '겨'처럼 텅 빈 허무함으로 끝날 수 있어. 진짜 행복은 하나님의 말씀이라는 시냇가에 깊이 뿌리를 내리는 거야. 말씀에 뿌리내린 사람은 어떤 고난이 와도 흔들리지 않고 진짜 생명의 열매를 맺어. 우리 같이 말씀의 길을 걸어가자! (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-base" oninput="checkFriSubjective()"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- General Completion Action Area -->
+      <div id="bottom-complete-bar" class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex flex-col gap-4 items-center justify-between text-center md:text-left md:flex-row">
+        <div>
+          <h3 id="btn-complete-title" class="font-bold text-slate-900 text-sm md:text-base">월요일 큐티를 다 채우셨나요?</h3>
+          <p id="btn-complete-desc" class="text-[11px] text-slate-500 mt-1">말씀을 즐거워하며 시냇가에 심은 나무의 생명력 리포트를 완성해 보세요.</p>
+        </div>
+        <button onclick="generateReport()" class="w-full md:w-auto bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold px-5 py-3 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-xs md:text-sm">
+          <i class="fa-solid fa-file-image"></i> <span id="btn-complete-text">월요일 결과 리포트 만들기</span>
+        </button>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- CAPTURE REPORT MODAL -->
+  <div id="report-modal" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto hidden">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-5 md:p-8 space-y-5 relative shadow-2xl my-8">
+      
+      <!-- Close Button -->
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors">
+        <i class="fa-solid fa-circle-xmark text-2xl"></i>
+      </button>
+
+      <!-- The capturing zone -->
+      <div id="capture-zone" class="bg-gradient-to-br from-emerald-50 via-teal-50 to-amber-50 p-5 md:p-8 rounded-2xl border border-emerald-200/80 shadow-inner relative overflow-hidden">
+        
+        <!-- Decorative Watermark Background -->
+        <div class="absolute -right-16 -bottom-16 text-emerald-200/20 pointer-events-none">
+          <i class="fa-solid fa-tree text-[240px] transform -rotate-12"></i>
+        </div>
+
+        <div class="relative space-y-4">
+          <!-- Report Header -->
+          <div class="flex justify-between items-start border-b border-emerald-200 pb-3">
+            <div>
+              <span id="rep-stage-badge" class="bg-emerald-600 text-white text-[9px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">월요일 큐티 완료</span>
+              <h2 id="rep-title" class="text-base md:text-xl font-black text-slate-900 mt-1">1단계: 말씀을 즐거워하는 복 있는 사람</h2>
+              <p class="text-[11px] text-slate-600 mt-0.5">시편 1편 묵상 리포트</p>
+            </div>
+            <div class="text-right shrink-0">
+              <span class="text-xs font-bold text-emerald-900 bg-emerald-100/90 px-2.5 py-0.5 rounded">킹덤틴즈 26과</span>
+              <p class="text-[9px] text-slate-400 mt-1" id="report-date"></p>
+            </div>
+          </div>
+
+          <!-- Dynamic Answers Container inside Capture Card -->
+          <div id="rep-answers-list" class="space-y-3">
+            <!-- Dynamic list items injected via JS -->
+          </div>
+
+          <!-- Report Footer Statement -->
+          <div class="text-center pt-3 border-t border-emerald-200">
+            <p class="text-[11px] text-slate-500 italic">“그는 시냇가에 심은 나무가 철을 따라 열매를 맺으며... 다 형통하리로다” (시 1:3)</p>
+            <p class="text-[9px] text-emerald-900 font-bold mt-1">바람에 나는 겨가 아닌, 말씀의 시냇가에 깊이 뿌리내린 생명나무로 살아가겠습니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3 justify-end pt-2">
+        <button onclick="shareAppUrl()" class="w-full sm:w-auto bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold px-5 py-2 rounded-xl transition text-xs flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-link"></i> 초대 주소 복사
+        </button>
+        <button onclick="closeModal()" class="w-full sm:w-auto bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2 rounded-xl transition text-xs">
+          조금 더 수정하기
+        </button>
+        <button onclick="downloadReportImage()" class="w-full sm:w-auto bg-teal-600 hover:bg-teal-700 text-white font-bold px-5 py-2 rounded-xl transition text-xs flex items-center justify-center gap-2 shadow-md">
+          <i class="fa-solid fa-download"></i> 리포트 캡처 이미지 저장
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Reset Modal -->
+  <div id="reset-confirm-modal" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-5 space-y-4 text-center shadow-2xl border border-slate-100">
+      <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-full flex items-center justify-center mx-auto text-xl">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <div class="space-y-1">
+        <h3 class="font-bold text-slate-900 text-base">26과 진도 초기화</h3>
+        <p class="text-xs text-slate-500 leading-relaxed">작성한 답변과 잠금 해제 상태가 모두 초기화됩니다. 처음부터 다시 도전할까요?</p>
+      </div>
+      <div class="flex gap-2.5 pt-2">
+        <button onclick="closeResetModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2 rounded-xl text-xs transition">취소</button>
+        <button onclick="confirmResetProgress()" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 rounded-xl text-xs transition">전체 초기화</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Alert Toast Box -->
+  <div id="alert-box" class="fixed bottom-6 right-6 left-6 sm:left-auto bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 z-50 pointer-events-none max-w-sm">
+    <span class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
+      <i class="fa-solid fa-check text-[10px]"></i>
+    </span>
+    <span id="alert-msg" class="text-xs font-semibold">알림 메시지</span>
+  </div>
+
+  <script>
+    const days = ['mon', 'tue', 'wed', 'thu', 'fri'];
+    let currentDay = 'mon';
+    let currentFilteredSection = 'all';
+
+    function safeGetStorage(key, defaultValue) {
+      try {
+        const item = localStorage.getItem(key);
+        return item ? JSON.parse(item) : defaultValue;
+      } catch(e) {
+        return defaultValue;
+      }
+    }
+
+    function safeSetStorage(key, value) {
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+      } catch(e) {
+        console.warn('LocalStorage save failed:', e);
+      }
+    }
+
+    // 26과 요일별 잠금 해제 상태 관리 (월요일 기본 해제)
+    let unlockedDays = safeGetStorage('kt26_unlocked_days', {
+      mon: true,
+      tue: false,
+      wed: false,
+      thu: false,
+      fri: false
+    });
+
+    // 26과 정답 체크 딕셔너리
+    const WEEKLY_ANSWERS = {
+      mon: {
+        1: {
+          part1: ["악인들", "악인"],
+          part2: ["죄인들", "죄인"],
+          part3: ["오만한 자들", "오만한 자", "오만한자들"]
+        },
+        2: ["율법", "말씀", "여호와의 율법", "여호와의 말씀"],
+        3: ["시냇가", "시내", "시냇가에"],
+        4: ["형통", "형통하리로다"]
+      },
+      tue: {
+        1: ["겨", "바람에 나는 겨"],
+        2: {
+          part1: ["심판"],
+          part2: ["의인들", "의인", "의인들의"]
+        },
+        3: ["인정", "인정하심", "인정하시나"],
+        4: ["망하리로다", "망하리라", "망함", "멸망하리로다"]
+      },
+      thu: {
+        1: {
+          part1: ["말씀", "율법"],
+          part2: ["묵상"]
+        },
+        2: ["말씀", "율법", "말씀에", "율법에"],
+        3: {
+          part1: ["아시고", "알고", "아심"],
+          part2: ["돌보신다", "돌보심", "지키신다", "보호하신다"]
+        },
+        4: ["예수 그리스도", "예수그리스도", "예수님", "예수", "그리스도"]
+      },
+      fri: {
+        1: 2, // ② X
+        2: 3, // ③ 나를 사랑하시는 하나님의 말씀을 진심으로 즐거워하고 기뻐하기 때문에
+        3: 3, // ③ 때로는 거센 비바람(고난)을 맞을지라도, 하나님의 선하신 뜻 안에서 생명의 열매를 맺으며 끝까지 보호받는 것
+        4: 4  // ④ 바람에 나는 겨
+      }
+    };
+
+    let daySolvedState = safeGetStorage('kt26_day_solved_state', {
+      mon: { 1: false, 2: false, 3: false, 4: false, 5: false },
+      tue: { 1: false, 2: false, 3: false, 4: false, 5: false },
+      wed: { reflex: false },
+      thu: { 1: false, 2: false, 3: false, 4: false, 5: false },
+      fri: { 1: false, 2: false, 3: false, 4: false, 5: false }
+    });
+
+    let friSelectedChoices = safeGetStorage('kt26_fri_selected', { 1: null, 2: null, 3: null, 4: null });
+
+    // ==================== 시편 1편 성경 본문 데이터 (1-6절 전문) ====================
+    const PSALM_1_VERSES = [
+      { v: 1, section: '1to3', text: "복 있는 사람은 악인들의 꾀를 따르지 아니하며 죄인들의 길에 서지 아니하며 오만한 자들의 자리에 앉지 아니하고" },
+      { v: 2, section: '1to3', text: "오직 여호와의 율법을 즐거워하여 그의 율법을 주야로 묵상하는도다" },
+      { v: 3, section: '1to3', text: "그는 시냇가에 심은 나무가 철을 따라 열매를 맺으며 그 잎사귀가 마르지 아니함 같으니 그가 하는 모든 일이 다 형통하리로다" },
+      { v: 4, section: '4to6', text: "악인들은 그렇지 아니함이여 오직 바람에 나는 겨와 같도다" },
+      { v: 5, section: '4to6', text: "그러므로 악인들은 심판을 견디지 못하며 죄인들이 의인들의 모임에 들지 못하리로다" },
+      { v: 6, section: '4to6', text: "무릇 의인들의 길은 여호와께서 인정하시나 악인들의 길은 망하리로다" }
+    ];
+
+    function filterBibleSection(section) {
+      currentFilteredSection = section;
+      
+      const btnAll = document.getElementById('filter-btn-all');
+      const btn1to3 = document.getElementById('filter-btn-1to3');
+      const btn4to6 = document.getElementById('filter-btn-4to6');
+
+      [btnAll, btn1to3, btn4to6].forEach(b => {
+        if (b) b.className = "px-2.5 py-0.5 text-xs font-medium rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 shrink-0 transition";
+      });
+
+      if (section === 'all' && btnAll) btnAll.className = "px-2.5 py-0.5 text-xs font-bold rounded-lg bg-emerald-600 text-white shadow-sm shrink-0 transition";
+      if (section === '1to3' && btn1to3) btn1to3.className = "px-2.5 py-0.5 text-xs font-bold rounded-lg bg-emerald-600 text-white shadow-sm shrink-0 transition";
+      if (section === '4to6' && btn4to6) btn4to6.className = "px-2.5 py-0.5 text-xs font-bold rounded-lg bg-emerald-600 text-white shadow-sm shrink-0 transition";
+
+      renderPsalm1Bible();
+    }
+
+    function renderPsalm1Bible() {
+      const container = document.getElementById('left-content-bible');
+      if (!container) return;
+
+      let filtered = PSALM_1_VERSES;
+      let label = "시편 1편 1-6절 전체 말씀 (개역개정)";
+      if (currentFilteredSection === '1to3') {
+        filtered = PSALM_1_VERSES.filter(v => v.section === '1to3');
+        label = "시편 1:1-3 [의인의 길과 형통]";
+      } else if (currentFilteredSection === '4to6') {
+        filtered = PSALM_1_VERSES.filter(v => v.section === '4to6');
+        label = "시편 1:4-6 [악인의 바람에 나는 겨와 심판]";
+      }
+
+      let html = `
+        <div class="bg-emerald-50/80 border-l-4 border-emerald-600 p-3 rounded-r-xl mb-3">
+          <p class="text-xs font-bold text-emerald-950">📖 ${label}</p>
+          <p class="text-[11px] text-emerald-900 mt-0.5">말씀을 눈으로 읽고 소리 내어 읊조리며 문제의 답을 찾아보세요.</p>
+        </div>
+        <div class="space-y-4 pr-1 max-h-[560px] overflow-y-auto border border-slate-200/80 p-3.5 rounded-xl bg-slate-50/40 text-[13px] md:text-[14px] leading-relaxed">
+      `;
+
+      filtered.forEach(item => {
+        let isRighteous = item.section === '1to3';
+        let badgeColor = isRighteous ? 'bg-emerald-100/90 text-emerald-900 border border-emerald-200' : 'bg-amber-100/90 text-amber-900 border border-amber-200';
+        
+        html += `
+          <p class="text-slate-800">
+            <strong class="${badgeColor} text-[11px] px-1.5 py-0.5 rounded mr-1 font-bold shrink-0">1:${item.v}</strong>
+            <span>${item.text}</span>
+          </p>
+        `;
+      });
+
+      html += `</div>`;
+
+      if (currentDay === 'thu') {
+        html += `
+          <div class="p-4 bg-emerald-50/80 border border-emerald-200 rounded-xl space-y-2 mt-4 text-justify">
+            <div class="flex items-center gap-1.5 text-emerald-950 font-bold text-xs border-b border-emerald-200 pb-1.5">
+              <i class="fa-solid fa-book-bible text-emerald-700"></i> 웨스트민스터 소교리문답 40문
+            </div>
+            <p class="text-xs text-slate-800 font-semibold bg-white p-3 rounded-lg border border-emerald-100 shadow-sm leading-relaxed">
+              <strong>문 40: 하나님께서 처음에 사람에게 순종의 법칙으로 무엇을 계시하셨습니까?</strong><br><br>
+              <strong>답:</strong> 하나님께서 순종을 위하여 처음에 사람에게 계시하신 법칙은 <u>도덕법(하나님의 말씀/계명)</u>이었습니다.
+            </p>
+          </div>
+        `;
+      }
+
+      container.innerHTML = html;
+    }
+
+    function switchDay(day) {
+      if (!unlockedDays[day]) {
+        const dayNames = { mon: '월요일(1단계)', tue: '화요일(2단계)', wed: '수요일(3단계)', thu: '목요일(4단계)', fri: '금요일(5단계)' };
+        showNotification(`🔒 이전 단계 큐티를 작성하고 [결과 리포트 카드]를 생성하셔야 ${dayNames[day]} 과정이 잠금 해제됩니다!`, false);
+        return;
+      }
+
+      currentDay = day;
+      renderDayTabs();
+
+      const badges = {
+        mon: "월요일 진행 중",
+        tue: "화요일 진행 중",
+        wed: "수요일 진행 중",
+        thu: "목요일 진행 중",
+        fri: "금요일 진행 중"
+      };
+      const dayBadge = document.getElementById('day-badge-name');
+      if (dayBadge) dayBadge.textContent = badges[day];
+
+      const completeTitles = {
+        mon: "월요일 큐티를 다 채우셨나요?",
+        tue: "화요일 큐티를 다 채우셨나요?",
+        wed: "수요일 묵상을 다 채우셨나요?",
+        thu: "목요일 학습을 다 채우셨나요?",
+        fri: "금요일 퀴즈를 완료하셨나요?"
+      };
+      const completeDescs = {
+        mon: "말씀을 즐거워하며 시냇가에 심은 나무의 생명력 리포트를 완성해 보세요.",
+        tue: "악인의 허무한 결말과 의인의 길을 지키시는 하나님의 인도 리포트를 완성해 보세요.",
+        wed: "생명나무 되신 예수님께 깊이 뿌리내리겠다는 나의 다짐 리포트를 만들어 보세요.",
+        thu: "하나님 나라 관점에서 '말씀(묵상)'과 순종의 법칙 리포트를 소장하세요.",
+        fri: "26과 시편 1편 전체 학습을 수료하셨습니다! 성취 인증 카드를 다운로드하세요."
+      };
+      const completeBtnText = {
+        mon: "월요일 결과 리포트 만들기",
+        tue: "화요일 결과 리포트 만들기",
+        wed: "수요일 고백 리포트 만들기",
+        thu: "목요일 결과 리포트 만들기",
+        fri: "금요일 최종 리포트 만들기"
+      };
+
+      const compTitle = document.getElementById('btn-complete-title');
+      if (compTitle) compTitle.textContent = completeTitles[day];
+
+      const compDesc = document.getElementById('btn-complete-desc');
+      if (compDesc) compDesc.textContent = completeDescs[day];
+
+      const compBtnText = document.getElementById('btn-complete-text');
+      if (compBtnText) compBtnText.textContent = completeBtnText[day];
+
+      const leftBible = document.getElementById('left-content-bible');
+      const leftReading = document.getElementById('left-content-reading');
+      const leftQuizIntro = document.getElementById('left-content-quizintro');
+      const readingTabLabel = document.getElementById('reading-tab-label');
+      const chapterNav = document.getElementById('bible-chapter-nav');
+
+      if (day === 'mon' || day === 'tue' || day === 'thu') {
+        if (leftBible) leftBible.classList.remove('hidden');
+        if (leftReading) leftReading.classList.add('hidden');
+        if (leftQuizIntro) leftQuizIntro.classList.add('hidden');
+        if (chapterNav) chapterNav.classList.remove('hidden');
+        if (readingTabLabel) readingTabLabel.textContent = "📖 성경 말씀 읽기";
+        
+        // 1, 2, 4단계 모두 기본으로 시편 1편 1-6절 전체를 보여줌
+        filterBibleSection('all');
+      } else if (day === 'wed') {
+        if (leftBible) leftBible.classList.add('hidden');
+        if (chapterNav) chapterNav.classList.add('hidden');
+        if (leftReading) {
+          leftReading.classList.remove('hidden');
+          leftReading.innerHTML = `
+            <div class="bg-emerald-50 border-l-4 border-emerald-600 p-4 rounded-r-xl">
+              <p class="text-xs font-bold text-emerald-950">💡 3단계 킹덤 리딩 칼럼</p>
+              <p class="text-[11px] text-emerald-900 mt-1">흔들리지 않는 영원한 생명나무 되신 예수님과 시냇가의 축복을 묵상해 보세요.</p>
+            </div>
+
+            <div class="space-y-5 pr-1 text-slate-800 mt-4 text-[14px]">
+              <section>
+                <h3 class="text-base font-extrabold text-emerald-950 border-b border-emerald-100 pb-1 mb-2 flex items-center gap-1.5">
+                  <span>인생의 두 갈래 길 앞에서의 선택 🛤️</span>
+                </h3>
+                <p class="leading-relaxed text-justify">
+                  우리는 매일 수많은 선택을 하며 살아가지. 세상은 남들보다 더 높이 올라가고, 더 많이 가지는 넓고 화려한 길이 ‘행복’이라고 속삭여. 하지만 온 우주를 지으신 하나님은 시편 1편을 통해 우리 인생에 오직 두 가지 길만이 존재한다고 분명하게 말씀해 주셔! 바로 영원한 생명으로 이어지는 ‘의인의 길’과 영원한 파멸로 향하는 ‘악인의 길’이야. 진정한 행복은 내가 지금 어느 길 위에 서 있는지를 아는 것에서부터 시작돼!
+                </p>
+              </section>
+
+              <section>
+                <h3 class="text-base font-extrabold text-emerald-950 border-b border-emerald-100 pb-1 mb-2 flex items-center gap-1.5">
+                  <span>죄의 깊은 늪을 끊어내는 거룩한 용기 🛡️</span>
+                </h3>
+                <p class="leading-relaxed text-justify">
+                  시편이 말하는 참된 행복은, 먼저 내 삶을 무너뜨리는 것들을 단호하게 거절하는 데서 출발해. 죄는 한순간에 우리를 꿀꺽 삼키지 않거든. 처음에는 호기심에 악인들의 꾀를 슬쩍 ‘따라 걷게’ 만들고, 어느새 그 나쁜 길에 멈춰 ‘서게’ 하고, 결국에는 하나님을 조롱하는 자리에 푹 ‘주저앉게’ 만들어 버리지. 행복한 사람은 이 찰거머리 같은 죄의 전염성을 알기에, 아무리 달콤해 보이는 유혹이라도 단호하게 선을 긋고 돌아서는 거룩한 용기를 가진 사람이야!
+                </p>
+              </section>
+
+              <section>
+                <h3 class="text-base font-extrabold text-emerald-950 border-b border-emerald-100 pb-1 mb-2 flex items-center gap-1.5">
+                  <span>시냇가에 깊이 뿌리내린 생명력 💧</span>
+                </h3>
+                <p class="leading-relaxed text-justify">
+                  그렇다면 죄의 유혹을 이겨내는 힘은 어디서 올까? 바로 ‘하나님의 말씀’이야. 📖 복 있는 사람은 억지로 눈치 보며 말씀을 읽는 게 아니야. 나를 향한 아버지의 사랑이 담긴 그 말씀을 진심으로 기뻐하며 밤낮으로 깊이 묵상하지. 이런 사람은 메마른 광야에서도 마르지 않는 ‘시냇가에 심은 나무’와 같아! 내 능력이 뛰어나서가 아니라, 생명의 근원이신 하나님께 말씀의 뿌리를 깊이 내리고 있기 때문에 세상의 가뭄과 고난 앞에서도 절대 시들지 않고 생명의 열매를 맺게 되는 거야.
+                </p>
+              </section>
+
+              <section>
+                <h3 class="text-base font-extrabold text-emerald-950 border-b border-emerald-100 pb-1 mb-2 flex items-center gap-1.5">
+                  <span>훅~ 불면 날아가는 껍데기 인생 🍂</span>
+                </h3>
+                <p class="leading-relaxed text-justify">
+                  반대로 하나님의 말씀을 무시하고 자기 생각대로 사는 악인들의 끝은 너무나 비참해. 당장 이 땅에서는 그들이 돈을 쓸어모으고 권력을 쥐며 무성한 나무처럼 보일지 몰라. 하지만 하나님의 눈에 그들의 인생은 속이 텅 빈 ‘겨(곡식 껍질)’와 같아. 하나님의 공의로운 심판의 바람이 부는 날, 그들은 훅 불면 아무런 무게도 견디지 못하고 흔적도 없이 흩어져 날아가 버리지. 🌬️ 그들은 영광스러운 하나님 나라 백성들의 거룩한 모임에 절대 들어갈 수 없어!
+                </p>
+              </section>
+
+              <section>
+                <h3 class="text-base font-extrabold text-emerald-950 border-b border-emerald-100 pb-1 mb-2 flex items-center gap-1.5">
+                  <span>완전한 생명나무가 되어주신 예수님 ✝️</span>
+                </h3>
+                <p class="leading-relaxed text-justify">
+                  그런데 얘들아, 우리는 늘 말씀대로 살기를 다짐하지만 연약해서 자주 흔들리고 세상의 바람에 휩쓸리곤 하잖아? 😭 그래서 하나님은 우리를 대신해 모든 유혹을 완벽하게 이겨내신 단 한 분의 완벽한 의인, 예수 그리스도를 보내주셨어! 👑 예수님은 하나님의 뜻에 철저히 순종하여 십자가라는 나무에 오르셨고, 자신의 생명을 내어주심으로 우리를 영원한 ‘생명 시냇가’로 인도해 주셨어. 이제 우리는 나의 의로움이 아니라, 십자가의 은혜로 굳게 서는 나무가 되었어! 요동치는 세상 속에서 썩어 없어질 껍데기 인생을 부러워하지 말고, 참된 의인이신 예수님께 깊이 뿌리내리는 지혜로운 킹덤틴즈가 되자! 🔥
+                </p>
+              </section>
+
+              <section>
+                <div class="bg-emerald-50/80 border border-emerald-200 rounded-xl p-3.5 space-y-2 mt-4 text-justify">
+                  <p class="text-xs text-emerald-950 font-bold">🌟 [다짐과 기도]</p>
+                  <p class="text-xs text-slate-800 leading-relaxed">“하나님, 세상의 화려해 보이는 악한 길을 부러워하지 않고, 저를 살리시는 하나님의 말씀에 깊이 뿌리를 내리겠습니다. 흔들릴 때마다 저를 위해 완전한 의를 이루신 예수님을 바라보며, 어떤 고난 속에서도 시냇가에 심은 나무처럼 튼튼한 백성이 되게 해 주세요. 예수님의 이름으로 기도합니다. 아멘.”</p>
+                </div>
+              </section>
+            </div>
+          `;
+        }
+        const leftPanelTitle = document.getElementById('left-panel-title');
+        const leftPanelMeta = document.getElementById('left-panel-meta');
+        if (leftPanelTitle) leftPanelTitle.innerHTML = `<i class="fa-solid fa-book-open text-emerald-600"></i> 3단계 킹덤 리딩`;
+        if (leftPanelMeta) leftPanelMeta.textContent = "흔들리지 않는 영원한 생명나무";
+        if (readingTabLabel) readingTabLabel.textContent = "📖 킹덤 리딩 읽기";
+      } else if (day === 'fri') {
+        if (leftBible) leftBible.classList.add('hidden');
+        if (leftReading) leftReading.classList.add('hidden');
+        if (chapterNav) chapterNav.classList.add('hidden');
+        if (leftQuizIntro) {
+          leftQuizIntro.classList.remove('hidden');
+          leftQuizIntro.innerHTML = `
+            <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-xl">
+              <p class="text-xs font-bold text-emerald-900">🎯 금요일 최종 퀴즈 가이드</p>
+              <p class="text-[11px] text-emerald-800 mt-1">한 주간 학습한 시편 1편의 핵심 진리(의인의 형통, 악인의 심판, 말씀 묵상의 참된 복)를 점검합니다.</p>
+            </div>
+            <div class="space-y-4 text-xs md:text-sm text-slate-600 mt-4 leading-relaxed">
+              <p>📍 5단계 퀴즈는 자습용이므로, 선택 시 즉시 정오답 색상 힌트나 강조 효과가 나타나지 않습니다.</p>
+              <p>📍 1~4번 객관식 및 O/X 문항과 5번 서술형 마음 조언을 모두 채운 뒤 ‘결과 리포트 만들기’를 눌러주세요.</p>
+            </div>
+          `;
+        }
+        const leftPanelTitle = document.getElementById('left-panel-title');
+        const leftPanelMeta = document.getElementById('left-panel-meta');
+        if (leftPanelTitle) leftPanelTitle.innerHTML = `<i class="fa-solid fa-gamepad text-emerald-600"></i> 주간 마침표`;
+        if (leftPanelMeta) leftPanelMeta.textContent = "최종 주간 성취도 테스트";
+        if (readingTabLabel) readingTabLabel.textContent = "🎯 퀴즈 정보";
+      }
+
+      days.forEach(d => {
+        const pane = document.getElementById(`quiz-day-${d}`);
+        if (pane) {
+          if (d === day) {
+            pane.classList.remove('hidden');
+          } else {
+            pane.classList.add('hidden');
+          }
+        }
+      });
+
+      restoreSavedInputValues(day);
+      recheckAndTriggerBadges(day);
+      switchMobileTab('reading');
+    }
+
+    function saveInputValue(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        try {
+          localStorage.setItem(`kt26_input_${id}`, el.value);
+        } catch(e) {}
+      }
+    }
+
+    function restoreSavedInputValues(day) {
+      let inputsToRestore = [];
+      if (day === 'mon') {
+        inputsToRestore = ['ans-mon-1-1', 'ans-mon-1-2', 'ans-mon-1-3', 'ans-mon-2', 'ans-mon-3', 'ans-mon-4', 'ans-mon-5'];
+      } else if (day === 'tue') {
+        inputsToRestore = ['ans-tue-1', 'ans-tue-2-1', 'ans-tue-2-2', 'ans-tue-3', 'ans-tue-4', 'ans-tue-5'];
+      } else if (day === 'wed') {
+        inputsToRestore = ['ans-wed-reflex'];
+      } else if (day === 'thu') {
+        inputsToRestore = ['ans-thu-1-1', 'ans-thu-1-2', 'ans-thu-2', 'ans-thu-3-1', 'ans-thu-3-2', 'ans-thu-4', 'ans-thu-5'];
+      } else if (day === 'fri') {
+        inputsToRestore = ['ans-fri-5'];
+      }
+
+      inputsToRestore.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          try {
+            const savedVal = localStorage.getItem(`kt26_input_${id}`);
+            if (savedVal !== null) {
+              el.value = savedVal;
+            }
+          } catch(e) {}
+        }
+      });
+    }
+
+    function checkMonAnswer(step) {
+      if (step === 1) {
+        const in1 = (document.getElementById('ans-mon-1-1')?.value || '').trim();
+        const in2 = (document.getElementById('ans-mon-1-2')?.value || '').trim();
+        const in3 = (document.getElementById('ans-mon-1-3')?.value || '').trim();
+        saveInputValue('ans-mon-1-1');
+        saveInputValue('ans-mon-1-2');
+        saveInputValue('ans-mon-1-3');
+
+        const c1 = WEEKLY_ANSWERS.mon[1].part1.includes(in1);
+        const c2 = WEEKLY_ANSWERS.mon[1].part2.includes(in2);
+        const c3 = WEEKLY_ANSWERS.mon[1].part3.includes(in3);
+
+        if (c1 && c2 && c3) {
+          revealCorrect('mon', 1);
+        }
+      } else if (step >= 2 && step <= 4) {
+        const input = (document.getElementById(`ans-mon-${step}`)?.value || '').trim();
+        saveInputValue(`ans-mon-${step}`);
+        if (WEEKLY_ANSWERS.mon[step].includes(input)) {
+          revealCorrect('mon', step);
+        }
+      } else if (step === 5) {
+        const text = (document.getElementById('ans-mon-5')?.value || '').trim();
+        saveInputValue('ans-mon-5');
+        daySolvedState.mon[5] = text.length >= 3;
+        safeSetStorage('kt25_day_solved_state', daySolvedState);
+      }
+    }
+
+    function checkTueAnswer(step) {
+      if (step === 1) {
+        const in1 = (document.getElementById('ans-tue-1')?.value || '').trim();
+        saveInputValue('ans-tue-1');
+        if (WEEKLY_ANSWERS.tue[1].includes(in1)) {
+          revealCorrect('tue', 1);
+        }
+      } else if (step === 2) {
+        const in1 = (document.getElementById('ans-tue-2-1')?.value || '').trim();
+        const in2 = (document.getElementById('ans-tue-2-2')?.value || '').trim();
+        saveInputValue('ans-tue-2-1');
+        saveInputValue('ans-tue-2-2');
+
+        const c1 = WEEKLY_ANSWERS.tue[2].part1.includes(in1);
+        const c2 = WEEKLY_ANSWERS.tue[2].part2.includes(in2);
+        if (c1 && c2) {
+          revealCorrect('tue', 2);
+        }
+      } else if (step >= 3 && step <= 4) {
+        const input = (document.getElementById(`ans-tue-${step}`)?.value || '').trim();
+        saveInputValue(`ans-tue-${step}`);
+        if (WEEKLY_ANSWERS.tue[step].includes(input)) {
+          revealCorrect('tue', step);
+        }
+      } else if (step === 5) {
+        const text = (document.getElementById('ans-tue-5')?.value || '').trim();
+        saveInputValue('ans-tue-5');
+        daySolvedState.tue[5] = text.length >= 3;
+        safeSetStorage('kt25_day_solved_state', daySolvedState);
+      }
+    }
+
+    function checkWedAnswer() {
+      const text = (document.getElementById('ans-wed-reflex')?.value || '').trim();
+      saveInputValue('ans-wed-reflex');
+      daySolvedState.wed.reflex = text.length >= 3;
+      safeSetStorage('kt25_day_solved_state', daySolvedState);
+    }
+
+    function checkThuAnswer(step) {
+      let isCorrect = false;
+
+      if (step === 1) {
+        const in1 = (document.getElementById('ans-thu-1-1')?.value || '').trim();
+        const in2 = (document.getElementById('ans-thu-1-2')?.value || '').trim();
+        saveInputValue('ans-thu-1-1');
+        saveInputValue('ans-thu-1-2');
+        isCorrect = WEEKLY_ANSWERS.thu[1].part1.includes(in1) && WEEKLY_ANSWERS.thu[1].part2.includes(in2);
+      } else if (step === 2) {
+        const inVal = (document.getElementById('ans-thu-2')?.value || '').trim();
+        saveInputValue('ans-thu-2');
+        isCorrect = WEEKLY_ANSWERS.thu[2].includes(inVal);
+      } else if (step === 3) {
+        const in1 = (document.getElementById('ans-thu-3-1')?.value || '').trim();
+        const in2 = (document.getElementById('ans-thu-3-2')?.value || '').trim();
+        saveInputValue('ans-thu-3-1');
+        saveInputValue('ans-thu-3-2');
+        isCorrect = WEEKLY_ANSWERS.thu[3].part1.includes(in1) && WEEKLY_ANSWERS.thu[3].part2.includes(in2);
+      } else if (step === 4) {
+        const inVal = (document.getElementById('ans-thu-4')?.value || '').trim();
+        saveInputValue('ans-thu-4');
+        isCorrect = WEEKLY_ANSWERS.thu[4].includes(inVal);
+      } else if (step === 5) {
+        const text = (document.getElementById('ans-thu-5')?.value || '').trim();
+        saveInputValue('ans-thu-5');
+        daySolvedState.thu[5] = text.length >= 3;
+        safeSetStorage('kt25_day_solved_state', daySolvedState);
+        return;
+      }
+
+      const badge = document.getElementById(`badge-thu-${step}`);
+      const card = document.getElementById(`thu-card-${step}`);
+
+      if (isCorrect) {
+        daySolvedState.thu[step] = true;
+        if (badge) {
+          badge.classList.remove('hidden');
+          badge.classList.add('flex');
+        }
+        if (card) {
+          card.classList.add('bg-emerald-50/25', 'border-emerald-200');
+        }
+      } else {
+        daySolvedState.thu[step] = false;
+        if (badge) {
+          badge.classList.add('hidden');
+          badge.classList.remove('flex');
+        }
+        if (card) {
+          card.classList.remove('bg-emerald-50/25', 'border-emerald-200');
+        }
+      }
+
+      safeSetStorage('kt25_day_solved_state', daySolvedState);
+    }
+
+    function selectFriQuiz(questionNum, optionNum) {
+      friSelectedChoices[questionNum] = optionNum;
+      safeSetStorage('kt25_fri_selected', friSelectedChoices);
+
+      if (questionNum === 1) {
+        const btn1 = document.getElementById('fri-btn-1-1');
+        const btn2 = document.getElementById('fri-btn-1-2');
+        if (btn1) btn1.className = "border-2 border-slate-200 rounded-2xl p-4 text-slate-700 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex flex-col items-center gap-2";
+        if (btn2) btn2.className = "border-2 border-slate-200 rounded-2xl p-4 text-slate-700 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex flex-col items-center gap-2";
+      } else {
+        for (let i = 1; i <= 4; i++) {
+          const btn = document.getElementById(`fri-btn-${questionNum}-${i}`);
+          if (btn) btn.className = "text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-emerald-500 hover:bg-emerald-50/25 transition-all flex gap-3 items-center w-full";
+        }
+      }
+
+      const selectedBtn = document.getElementById(`fri-btn-${questionNum}-${optionNum}`);
+      if (selectedBtn) {
+        if (questionNum === 1) {
+          selectedBtn.className = "border-2 border-emerald-600 bg-emerald-50/50 text-emerald-950 rounded-2xl p-4 transition-all flex flex-col items-center gap-2 shadow-sm font-bold";
+        } else {
+          selectedBtn.className = "text-left border-2 border-emerald-600 bg-emerald-50/50 rounded-2xl p-3.5 transition-all flex gap-3 items-center w-full shadow-sm font-semibold";
+        }
+      }
+
+      daySolvedState.fri[questionNum] = (optionNum !== null);
+      safeSetStorage('kt25_day_solved_state', daySolvedState);
+    }
+
+    function checkFriSubjective() {
+      const text = (document.getElementById('ans-fri-5')?.value || '').trim();
+      saveInputValue('ans-fri-5');
+      daySolvedState.fri[5] = text.length >= 3;
+      safeSetStorage('kt25_day_solved_state', daySolvedState);
+    }
+
+    function revealCorrect(day, step, showToast = true) {
+      if (daySolvedState[day][step]) return;
+      
+      daySolvedState[day][step] = true;
+      safeSetStorage('kt25_day_solved_state', daySolvedState);
+      
+      const badge = document.getElementById(`badge-${day}-${step}`);
+      if (badge) {
+        badge.classList.remove('hidden');
+        badge.classList.add('flex');
+      }
+
+      const explain = document.getElementById(`explain-${day}-${step}`);
+      if (explain) {
+        explain.classList.remove('hidden');
+        explain.classList.add('block');
+      }
+
+      const card = document.getElementById(`${day}-card-${step}`);
+      if (card) {
+        card.classList.add('bg-emerald-50/25', 'border-emerald-200');
+      }
+
+      if (showToast) {
+        showNotification(`${step}번 정답을 찾으셨습니다! 해설 카드가 열렸습니다.`);
+      }
+    }
+
+    function recheckAndTriggerBadges(day) {
+      if (day === 'mon') {
+        for (let i = 1; i <= 4; i++) {
+          if (daySolvedState.mon[i]) {
+            daySolvedState.mon[i] = false;
+            revealCorrect('mon', i, false);
+          }
+        }
+      } else if (day === 'tue') {
+        for (let i = 1; i <= 4; i++) {
+          if (daySolvedState.tue[i]) {
+            daySolvedState.tue[i] = false;
+            revealCorrect('tue', i, false);
+          }
+        }
+      } else if (day === 'thu') {
+        for (let i = 1; i <= 5; i++) {
+          checkThuAnswer(i);
+        }
+      } else if (day === 'fri') {
+        for (let q = 1; q <= 4; q++) {
+          const opt = friSelectedChoices[q];
+          if (opt !== null) {
+            selectFriQuiz(q, opt);
+          }
+        }
+      }
+    }
+
+    function renderDayTabs() {
+      const koreanDays = { mon: '월(1단계)', tue: '화(2단계)', wed: '수(3단계)', thu: '목(4단계)', fri: '금(5단계)' };
+      days.forEach(d => {
+        const tabBtn = document.getElementById(`day-tab-${d}`);
+        if (tabBtn) {
+          const isUnlocked = unlockedDays[d];
+          const isCurrent = (d === currentDay);
+          
+          let label = koreanDays[d];
+          if (!isUnlocked) label += ' 🔒';
+          tabBtn.textContent = label;
+          
+          if (isCurrent) {
+            tabBtn.className = "px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-emerald-600 text-white transition-all shadow-sm shrink-0";
+          } else if (!isUnlocked) {
+            tabBtn.className = "px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-slate-100 text-slate-400 cursor-not-allowed opacity-60 transition-all shrink-0";
+          } else {
+            tabBtn.className = "px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shrink-0";
+          }
+        }
+      });
+    }
+
+    function switchMobileTab(tabName) {
+      const paneReading = document.getElementById('pane-reading');
+      const paneActivity = document.getElementById('pane-activity');
+      const btnReading = document.getElementById('tab-btn-reading');
+      const btnActivity = document.getElementById('tab-btn-activity');
+
+      if (tabName === 'reading') {
+        if (paneReading) paneReading.classList.remove('hidden');
+        if (paneActivity) paneActivity.classList.add('hidden');
+        if (btnReading) btnReading.className = "flex-1 py-2 text-xs md:text-sm font-bold rounded-lg text-emerald-800 bg-emerald-50 transition-all flex items-center justify-center gap-1.5";
+        if (btnActivity) btnActivity.className = "flex-1 py-2 text-xs md:text-sm font-bold rounded-lg text-slate-500 hover:text-slate-800 transition-all flex items-center justify-center gap-1.5";
+      } else {
+        if (paneReading) paneReading.classList.add('hidden');
+        if (paneActivity) {
+          paneActivity.classList.remove('hidden');
+          paneActivity.classList.add('flex');
+        }
+        if (btnActivity) btnActivity.className = "flex-1 py-2 text-xs md:text-sm font-bold rounded-lg text-emerald-800 bg-emerald-50 transition-all flex items-center justify-center gap-1.5";
+        if (btnReading) btnReading.className = "flex-1 py-2 text-xs md:text-sm font-bold rounded-lg text-slate-500 hover:text-slate-800 transition-all flex items-center justify-center gap-1.5";
+      }
+    }
+
+    function showNotification(message, isSuccess = true) {
+      const alertBox = document.getElementById('alert-box');
+      const alertMsg = document.getElementById('alert-msg');
+      if (alertMsg) alertMsg.innerHTML = message;
+      if (alertBox) {
+        if (isSuccess) {
+          alertBox.className = "fixed bottom-6 right-6 left-6 sm:left-auto bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 transform translate-y-0 opacity-100 transition-all duration-300 z-50 pointer-events-none max-w-sm";
+        } else {
+          alertBox.className = "fixed bottom-6 right-6 left-6 sm:left-auto bg-rose-900 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 transform translate-y-0 opacity-100 transition-all duration-300 z-50 pointer-events-none max-w-sm";
+        }
+      }
+      setTimeout(() => {
+        if (alertBox) alertBox.className = "fixed bottom-6 right-6 left-6 sm:left-auto bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 z-50 pointer-events-none max-w-sm";
+      }, 3500);
+    }
+
+    function generateReport() {
+      if (currentDay === 'mon') {
+        for(let i=1; i<=4; i++) checkMonAnswer(i);
+        checkMonAnswer(5);
+      } else if (currentDay === 'tue') {
+        for(let i=1; i<=4; i++) checkTueAnswer(i);
+        checkTueAnswer(5);
+      } else if (currentDay === 'wed') {
+        checkWedAnswer();
+      } else if (currentDay === 'thu') {
+        for(let i=1; i<=5; i++) checkThuAnswer(i);
+      } else if (currentDay === 'fri') {
+        checkFriSubjective();
+      }
+
+      let isDayComplete = false;
+      if (currentDay === 'mon' || currentDay === 'tue' || currentDay === 'thu' || currentDay === 'fri') {
+        isDayComplete = Object.values(daySolvedState[currentDay]).every(Boolean);
+      } else if (currentDay === 'wed') {
+        isDayComplete = daySolvedState.wed.reflex;
+      }
+
+      if (!isDayComplete) {
+        showNotification("오늘 해당하는 모든 질문과 빈칸(서술형 포함)을 채우셔야 결과 리포트가 열리고 다음 요일이 해금됩니다! ✏️", false);
+        return;
+      }
+
+      const repTitle = document.getElementById('rep-title');
+      const repStageBadge = document.getElementById('rep-stage-badge');
+      const repAnswersList = document.getElementById('rep-answers-list');
+      if (repAnswersList) repAnswersList.innerHTML = '';
+
+      if (currentDay === 'mon') {
+        if (repStageBadge) repStageBadge.textContent = "월요일 큐티 완료";
+        if (repTitle) repTitle.textContent = "1단계: 말씀을 즐거워하는 복 있는 사람 (시 1:1-3)";
+
+        const a1_1 = (document.getElementById('ans-mon-1-1')?.value || '').trim();
+        const a1_2 = (document.getElementById('ans-mon-1-2')?.value || '').trim();
+        const a1_3 = (document.getElementById('ans-mon-1-3')?.value || '').trim();
+        const a2 = (document.getElementById('ans-mon-2')?.value || '').trim();
+        const a3 = (document.getElementById('ans-mon-3')?.value || '').trim();
+        const a4 = (document.getElementById('ans-mon-4')?.value || '').trim();
+        const a5 = (document.getElementById('ans-mon-5')?.value || '').trim();
+
+        injectReportItem(1, "복 있는 사람이 피해야 할 세 가지", `${a1_1}의 꾀, ${a1_2}의 길, ${a1_3}의 자리`);
+        injectReportItem(2, "주야로 즐거워하며 묵상하는 것", `여호와의 ${a2}`);
+        injectReportItem(3, "말씀 묵상자의 비유", `${a3}에 심은 나무`);
+        injectReportItem(4, "시냇가에 심은 나무의 결말", `그가 하는 모든 일이 다 ${a4}하리로다`);
+        injectReportItem(5, "말씀을 가까이하기 위한 나만의 실천", a5, true);
+      }
+
+      else if (currentDay === 'tue') {
+        if (repStageBadge) repStageBadge.textContent = "화요일 큐티 완료";
+        if (repTitle) repTitle.textContent = "2단계: 바람에 나는 겨 vs 인정받는 의인 (시 1:4-6)";
+
+        const a1 = (document.getElementById('ans-tue-1')?.value || '').trim();
+        const a2_1 = (document.getElementById('ans-tue-2-1')?.value || '').trim();
+        const a2_2 = (document.getElementById('ans-tue-2-2')?.value || '').trim();
+        const a3 = (document.getElementById('ans-tue-3')?.value || '').trim();
+        const a4 = (document.getElementById('ans-tue-4')?.value || '').trim();
+        const a5 = (document.getElementById('ans-tue-5')?.value || '').trim();
+
+        injectReportItem(1, "생명력 없는 악인의 비유", `오직 바람에 나는 ${a1}와 같도다`);
+        injectReportItem(2, "악인들이 견디지 못하는 것", `${a2_1}을 견디지 못하며, ${a2_2}의 모임에 들지 못함`);
+        injectReportItem(3, "의인들의 길을 향한 하나님의 주권", `여호와께서 ${a3}하시나 (끝까지 돌보심)`);
+        injectReportItem(4, "악인들의 길의 최종 결말", `악인들의 길은 ${a4}`);
+        injectReportItem(5, "세상의 불법 유혹 앞에서의 나의 다짐", a5, true);
+      }
+
+      else if (currentDay === 'wed') {
+        if (repStageBadge) repStageBadge.textContent = "수요일 큐티 완료";
+        if (repTitle) repTitle.textContent = "3단계: 킹덤 리딩 칼럼 묵상";
+
+        const reflex = (document.getElementById('ans-wed-reflex')?.value || '').trim();
+        injectReportItem("🌳", "흔들리지 않는 영원한 생명나무를 향한 나의 고백", reflex, true);
+      }
+
+      else if (currentDay === 'thu') {
+        if (repStageBadge) repStageBadge.textContent = "목요일 큐티 완료";
+        if (repTitle) repTitle.textContent = "4단계: 하나님 나라 관점 (핵심 단어: 말씀/묵상)";
+
+        const a1_1 = (document.getElementById('ans-thu-1-1')?.value || '').trim();
+        const a1_2 = (document.getElementById('ans-thu-1-2')?.value || '').trim();
+        const a2 = (document.getElementById('ans-thu-2')?.value || '').trim();
+        const a3_1 = (document.getElementById('ans-thu-3-1')?.value || '').trim();
+        const a3_2 = (document.getElementById('ans-thu-3-2')?.value || '').trim();
+        const a4 = (document.getElementById('ans-thu-4')?.value || '').trim();
+        const a5 = (document.getElementById('ans-thu-5')?.value || '').trim();
+
+        injectReportItem(1, "하나님 나라 백성의 진짜 행복", `여호와의 ${a1_1}을 즐거워하고 주야로 ${a1_2}함`);
+        injectReportItem(2, "의인과 악인을 가르는 결정적 기준", `하나님의 ${a2}에 대한 순종과 태도`);
+        injectReportItem(3, "의인의 길을 '인정하신다'는 뜻", `의인의 삶을 깊이 ${a3_1}, 끝까지 ${a3_2}`);
+        injectReportItem(4, "완전한 순종으로 생명의 길을 여신 분", `${a4}`);
+        injectReportItem(5, "소교리문답 40문: 말씀(도덕법) 순종이 주는 참된 유익", a5, true);
+      }
+
+      else if (currentDay === 'fri') {
+        if (repStageBadge) repStageBadge.textContent = "금요일 주간 성취 완료";
+        if (repTitle) repTitle.textContent = "5단계: 킹덤 최종 퀴즈 성적표";
+
+        const selected_1 = friSelectedChoices[1] === 2 ? "② X 응답 (정답: 복 있는 사람은 세상 조건이 아닌 말씀을 묵상하는 의인)" : "① O 응답";
+        const selected_2 = friSelectedChoices[2] === 3 ? "③ 하나님의 말씀을 진심으로 즐거워하고 기뻐하기 때문 (정답)" : `선택: ${friSelectedChoices[2]}번`;
+        const selected_3 = friSelectedChoices[3] === 3 ? "③ 고난 중에도 하나님의 뜻 안에서 열매 맺고 보호받는 것 (정답)" : `선택: ${friSelectedChoices[3]}번`;
+        const selected_4 = friSelectedChoices[4] === 4 ? "④ 바람에 나는 겨 (정답)" : `선택: ${friSelectedChoices[4]}번`;
+        const subjectiveText = (document.getElementById('ans-fri-5')?.value || '').trim();
+
+        injectReportItem(1, "Q1. '복 있는 사람'의 성경적 의미", selected_1);
+        injectReportItem(2, "Q2. 말씀을 주야로 묵상하는 가장 바른 동기", selected_2);
+        injectReportItem(3, "Q3. 시편 1:3 '형통'의 참된 의미", selected_3);
+        injectReportItem(4, "Q4. 심판 때 날아가는 악인의 비유", selected_4);
+        injectReportItem("💬", "Q5. 흔들리는 친구 수아에게 전하는 킹덤틴즈의 성경적 조언", subjectiveText, true);
+      }
+
+      const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' };
+      const today = new Date();
+      const reportDate = document.getElementById('report-date');
+      if (reportDate) reportDate.textContent = today.toLocaleDateString('ko-KR', options);
+
+      // Sequential Day Lock Progression Logic (Mon -> Fri)
+      let newlyUnlocked = null;
+      if (currentDay === 'mon' && !unlockedDays.tue) { unlockedDays.tue = true; newlyUnlocked = '화요일(2단계)'; }
+      else if (currentDay === 'tue' && !unlockedDays.wed) { unlockedDays.wed = true; newlyUnlocked = '수요일(3단계)'; }
+      else if (currentDay === 'wed' && !unlockedDays.thu) { unlockedDays.thu = true; newlyUnlocked = '목요일(4단계)'; }
+      else if (currentDay === 'thu' && !unlockedDays.fri) { unlockedDays.fri = true; newlyUnlocked = '금요일(5단계)'; }
+
+      if (newlyUnlocked) {
+        safeSetStorage('kt26_unlocked_days', unlockedDays);
+        renderDayTabs();
+        showNotification(`🎉 훌륭합니다! 오늘의 고백이 저장되어 <strong>[${newlyUnlocked}]</strong> 단계가 활성화되었습니다!`);
+      }
+
+      const modal = document.getElementById('report-modal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function injectReportItem(num, label, text, isLong = false) {
+      const repAnswersList = document.getElementById('rep-answers-list');
+      if (!repAnswersList) return;
+      
+      const itemHTML = `
+        <div class="bg-white/80 backdrop-blur-sm p-3.5 rounded-xl border border-emerald-100 shadow-sm text-justify">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="w-5 h-5 bg-emerald-600 text-white rounded-full text-xs font-bold flex items-center justify-center shrink-0">${num}</span>
+            <span class="text-xs font-bold text-slate-800">${label}</span>
+          </div>
+          <p class="${isLong ? 'text-slate-800 font-medium italic leading-relaxed whitespace-pre-wrap pl-7 text-xs md:text-sm mt-1' : 'text-sm pl-7 text-emerald-800 font-bold'}">
+            ${isLong ? text : `나의 성찰: <span class="bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">${text || "(미작성)"}</span>`}
+          </p>
+        </div>
+      `;
+      repAnswersList.insertAdjacentHTML('beforeend', itemHTML);
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('report-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function shareAppUrl() {
+      const dummy = document.createElement('input');
+      const text = window.location.href;
+      document.body.appendChild(dummy);
+      dummy.value = text;
+      dummy.select();
+      document.execCommand('copy');
+      document.body.removeChild(dummy);
+      showNotification('친구들에게 큐티를 권장할 수 있도록 초대 주소가 복사되었습니다! 🔗');
+    }
+
+    function openResetModal() {
+      const resetModal = document.getElementById('reset-confirm-modal');
+      if (resetModal) resetModal.classList.remove('hidden');
+    }
+
+    function closeResetModal() {
+      const resetModal = document.getElementById('reset-confirm-modal');
+      if (resetModal) resetModal.classList.add('hidden');
+    }
+
+    function confirmResetProgress() {
+      try {
+        localStorage.removeItem('kt26_unlocked_days');
+        localStorage.removeItem('kt26_day_solved_state');
+        localStorage.removeItem('kt26_fri_selected');
+        
+        const inputsToClear = [
+          'ans-mon-1-1', 'ans-mon-1-2', 'ans-mon-1-3', 'ans-mon-2', 'ans-mon-3', 'ans-mon-4', 'ans-mon-5',
+          'ans-tue-1', 'ans-tue-2-1', 'ans-tue-2-2', 'ans-tue-3', 'ans-tue-4', 'ans-tue-5',
+          'ans-wed-reflex',
+          'ans-thu-1-1', 'ans-thu-1-2', 'ans-thu-2', 'ans-thu-3-1', 'ans-thu-3-2', 'ans-thu-4', 'ans-thu-5',
+          'ans-fri-5'
+        ];
+        inputsToClear.forEach(id => localStorage.removeItem(`kt26_input_${id}`));
+      } catch(e) {}
+      location.reload();
+    }
+
+    function downloadReportImage() {
+      const element = document.getElementById('capture-zone');
+      if (!element) return;
+      
+      showNotification('결과 고백 카드를 고화질 캡처 이미지로 변환하고 있습니다. 잠시만 기다려주세요...', true);
+      
+      html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#fbfdfc',
+        logging: false
+      }).then(canvas => {
+        const image = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        const todayStr = new Date().toISOString().slice(0,10);
+        
+        link.download = `킹덤틴즈_26과_시편1편_리포트_${currentDay.toUpperCase()}_${todayStr}.png`;
+        link.href = image;
+        link.click();
+        
+        showNotification('이미지 다운로드가 완료되었습니다! 소모임 리더 및 부모님께 공유해 보세요.', true);
+        closeModal();
+      }).catch(err => {
+        showNotification('이미지 변환에 실패했습니다. 환경을 다시 확인해 주세요.', false);
+        console.error(err);
+      });
+    }
+
+    window.onload = function() {
+      renderDayTabs();
+      switchDay('mon');
+    }
+  </script>
+</body>
+</html>
